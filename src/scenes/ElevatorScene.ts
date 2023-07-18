@@ -18,9 +18,9 @@ export default class ElevatorScene extends Phaser.Scene {
 	create() {
 		const x = 300
 		const y = 350
-		this.player = new Character(this, x, y, 'hope')		
 
 		this.add.image(350,250, 'elevators')
+		this.player = new Character(this, x, y, 'hope')		
 
 		const hope = this.physics.add.image(400, 100, 'hope')
 
@@ -28,5 +28,8 @@ export default class ElevatorScene extends Phaser.Scene {
 		hope.setBounce(1, 1)
 		hope.setCollideWorldBounds(true)
 
+	}
+	update(): void {
+		this.player?.update()
 	}
 }

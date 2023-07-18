@@ -5,16 +5,16 @@ export class Character extends Phaser.GameObjects.Sprite {
   constructor(scene: any, x: number, y: number, texture: string ) {
     super(scene, x, y, texture );
 
-    let guy = <Phaser.Physics.Arcade.Body> this.body;
 
     // Making the homie
     this.setTexture(texture);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
+    let guy = <Phaser.Physics.Arcade.Body> this.body;
 
     // Player Config
     this.setScale(x / y);
-    guy.setGravityY(450);
+    guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
 
     //Method calls for creation
@@ -59,13 +59,14 @@ export class Character extends Phaser.GameObjects.Sprite {
     } else if (this.cursors.keyobj_right.isDown) {
       guy.setVelocityX(500);
     } else if (this.cursors.keyobj_up.isDown) {
-      guy.setVelocityY(500);
-    } else if (this.cursors.keyobj_down.isDown) {
       guy.setVelocityY(-500);
+    } else if (this.cursors.keyobj_down.isDown) {
+      guy.setVelocityY(500);
 
       // Idle
     } else {
         guy.setVelocityX(0);
+        guy.setVelocityY(0);
 
         this.anims.play("idle", true);
       }
