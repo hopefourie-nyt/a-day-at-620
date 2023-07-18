@@ -1,22 +1,24 @@
 import Phaser from 'phaser'
-import Character from '../classes/character.js'
+import {Character} from '../classes/character.js'
 
-export default class HelloWorldScene extends Phaser.Scene {
+export default class ElevatorScene extends Phaser.Scene {
+	player: Character | undefined
 	constructor() {
 		super('hello-world')
 	}
 
 	preload() {
-		const x = 300
-		const y = 350
+		
 		this.load.image('hope', 'src/assets/hope.png')
-		this.player = new Character(this, x, y, 'hope')		
 		this.load.image('elevators', 'src/assets/elevators.png')
 		
 	}
 
 
 	create() {
+		const x = 300
+		const y = 350
+		this.player = new Character(this, x, y, 'hope')		
 
 		this.add.image(350,250, 'elevators')
 
