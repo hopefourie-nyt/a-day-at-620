@@ -7,15 +7,6 @@ export default class ElevatorScene extends Phaser.Scene {
     super("ElevatorScene");
   }
 
-  preload() {
-    this.load.image("hope", "src/assets/sprites/hope.png");
-    this.load.image("elevators_1", "src/assets/backgrounds/elevators.png");
-    this.load.tilemapTiledJSON(
-      "elevators_map",
-      "src/assets/tilemaps/elevator.json"
-    );
-  }
-
   create() {
     const x = 300;
     const y = 350;
@@ -36,7 +27,7 @@ export default class ElevatorScene extends Phaser.Scene {
 
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();
-	nextButton.on('pointerover', () => { this.scene.start('StandUp') });
+	nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
 
     hope.setVelocity(500, 500);

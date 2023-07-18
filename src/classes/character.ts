@@ -13,7 +13,7 @@ export class Character extends Phaser.GameObjects.Sprite {
     let guy = <Phaser.Physics.Arcade.Body> this.body;
 
     // Player Config
-    this.setScale(x / y);
+    this.setScale(11 / 16);
     guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
 
@@ -68,7 +68,6 @@ export class Character extends Phaser.GameObjects.Sprite {
         guy.setVelocityX(0);
         guy.setVelocityY(0);
 
-        this.anims.play("idle", true);
       }
     }
   }

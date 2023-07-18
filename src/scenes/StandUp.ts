@@ -7,15 +7,6 @@ export default class StandUp extends Phaser.Scene {
 		super('StandUp')
 	}
 
-	preload() {
-		this.load.image('variant', 'src/assets/sprites/variant.png')
-		this.load.image('hope', 'src/assets/sprites/hope.png')
-        this.load.image('desk', 'src/assets/sprites/desk.png')
-		this.load.image('chair', 'src/assets/sprites/chair.png')
-		this.load.image('elevators', 'src/assets/backgrounds/conference-room.png')
-		
-	}
-
 
 	create() {
 		const x = 300

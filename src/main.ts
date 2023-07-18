@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import ElevatorScene from './scenes/ElevatorScene'
 import StandUp from './scenes/StandUp'
+import PreLoader from './scenes/PreLoader'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -14,7 +15,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 0 },
 		},
 	},
-	scene: [ StandUp],
+	scene: [PreLoader, ElevatorScene, StandUp],
 }
 
 export default new Phaser.Game(config)
