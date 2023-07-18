@@ -1,12 +1,12 @@
 import Phaser from 'phaser'
 
-import HelloWorldScene from './HelloWorldScene'
+import HelloWorldScene from './scenes/ElevatorScene'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	parent: 'app',
-	width: 800,
-	height: 600,
+	width: 700,
+	height: 500,
 	physics: {
 		default: 'arcade',
 		arcade: {
