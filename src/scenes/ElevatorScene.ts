@@ -10,8 +10,8 @@ export default class ElevatorScene extends Phaser.Scene {
 	preload() {
 		
 		this.load.image('hope', 'src/assets/hope.png')
-		this.load.image('elevators', 'src/assets/elevators.png')
-		
+		this.load.image('elevators_1', 'src/assets/elevators.png')
+		this.load.tilemapTiledJSON("elevators_map", "src/assets/tilemaps/elevator.json");
 	}
 
 
@@ -19,14 +19,20 @@ export default class ElevatorScene extends Phaser.Scene {
 		const x = 300
 		const y = 350
 
-		this.add.image(350,250, 'elevators')
+		const map = this.make.tilemap({key: 'elevators_map'})
+		const tileset = map.addTilesetImage("elevators_1", "elevators_1")
+		const belowLayer = map.createLayer("below player", tileset)
+		belowLayer.setCollisionByProperty({ collides: true });
 		this.player = new Character(this, x, y, 'hope')		
 
 		const hope = this.physics.add.image(400, 100, 'hope')
 
-		hope.setVelocity(100, 100)
+		hope.setVelocity(500, 500)
 		hope.setBounce(1, 1)
 		hope.setCollideWorldBounds(true)
+		this.physics.add.collider(hope, belowLayer);
+		this.physics.add.collider(this.player, belowLayer);
+		this.physics.add.collider(this.player, hope);
 
 	}
 	update(): void {
