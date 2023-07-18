@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Character from '../classes/character.js'
 
 export default class HelloWorldScene extends Phaser.Scene {
 	constructor() {
@@ -6,11 +7,14 @@ export default class HelloWorldScene extends Phaser.Scene {
 	}
 
 	preload() {
-
+		const x = 300
+		const y = 350
 		this.load.image('hope', 'src/assets/hope.png')
+		this.player = new Character(this, x, y, 'hope')		
 		this.load.image('elevators', 'src/assets/elevators.png')
 		
 	}
+
 
 	create() {
 
