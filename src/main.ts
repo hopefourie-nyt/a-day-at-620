@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 
 import ElevatorScene from './scenes/ElevatorScene'
+import StandUp from './scenes/StandUp'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -13,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 0 },
 		},
 	},
-	scene: [ElevatorScene],
+	scene: [ StandUp],
 }
 
 export default new Phaser.Game(config)
