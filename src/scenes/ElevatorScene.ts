@@ -21,7 +21,7 @@ export default class ElevatorScene extends Phaser.Scene {
     const portals_layer = map.createLayer("portals", tileset);
 
     belowLayer.setCollisionByProperty({ collides: true });
-    portals_layer.setCollisionByProperty({collides: true});
+    portals_layer.setCollisionByProperty({transition: true});
     this.player = new Character(this, x, y, "julian");
     
 	// Textbox
@@ -40,8 +40,8 @@ export default class ElevatorScene extends Phaser.Scene {
     nextButton.setInteractive();
 	  nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
-    //this.physics.add.collider(this.player, belowLayer);
-    this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
+  this.physics.add.collider(this.player, belowLayer);
+  this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
 	this.scene.pause() });
 
   }
