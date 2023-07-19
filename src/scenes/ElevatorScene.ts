@@ -23,25 +23,17 @@ export default class ElevatorScene extends Phaser.Scene {
     belowLayer.setCollisionByProperty({ collides: true });
     portals_layer.setCollisionByProperty({collides: true});
     this.player = new Character(this, x, y, "julian");
-    this.add.image(350, 250, "textbox")
-	  this.add.text(110, 465, "Good Morning! Approach the elevator button panel to get your day started", {color: "#000000"})
-
+    
 	// Textbox
-    this.add.image(350, 250, "textbox");
+    this.add.image(350, -150, "textbox");
     this.add.text(
       105,
-      465,
+      65,
       "Good Morning! Approach the elevator button panel to get your day started",
       { color: "#000000", fontSize: "11.5px" }
     );
 
-	// Panel Scene Button
-    const panelButton = this.add.text(300, 100, "panel Scene");
-    panelButton.setInteractive();
-    panelButton.on("pointerdown", () => {
-      this.scene.launch("ElevatorPanel")
-	  this.scene.pause()
-    });
+	
 	
 	// Next Scene Button
     const nextButton = this.add.text(100, 100, "Next Scene");
@@ -49,7 +41,8 @@ export default class ElevatorScene extends Phaser.Scene {
 	  nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
     //this.physics.add.collider(this.player, belowLayer);
-    this.physics.add.collider(this.player, portals_layer, () => { this.scene.start('StandUp') });
+    this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
+	this.scene.pause() });
 
   }
   update(): void {
