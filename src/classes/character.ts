@@ -2,17 +2,18 @@ import Phaser from "phaser";
 
 export class Character extends Phaser.GameObjects.Sprite {
   cursors: any;
-  constructor(scene: any, x: number, y: number, texture: string ) {
-    super(scene, x, y, texture );
-
+  facingLeft: boolean;
+  constructor(scene: any, x: number, y: number, texture: string) {
+    super(scene, x, y, texture);
 
     // Making the homie
     this.setTexture(texture);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    let guy = <Phaser.Physics.Arcade.Body> this.body;
+    let guy = <Phaser.Physics.Arcade.Body>this.body;
 
     // Player Config
+    this.facingLeft = false;
     this.setScale(11 / 16);
     guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
@@ -23,7 +24,6 @@ export class Character extends Phaser.GameObjects.Sprite {
   }
 
   init() {
-
     //Declarations
     this.cursors;
   }
@@ -51,13 +51,21 @@ export class Character extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    let guy = <Phaser.Physics.Arcade.Body> this.body;
+    let guy = <Phaser.Physics.Arcade.Body>this.body;
     // Move Left
     if (this.cursors.keyobj_left.isDown) {
       guy.setVelocityX(-500);
+      if (!this.facingLeft) {
+        this.flipX = !this.flipX;
+        this.facingLeft = true;
+      }
       // Move Right
     } else if (this.cursors.keyobj_right.isDown) {
       guy.setVelocityX(500);
+      if (this.facingLeft) {
+        this.flipX = !this.flipX;
+        this.facingLeft = false;
+      }
     } else if (this.cursors.keyobj_up.isDown) {
       guy.setVelocityY(-500);
     } else if (this.cursors.keyobj_down.isDown) {
@@ -65,10 +73,8 @@ export class Character extends Phaser.GameObjects.Sprite {
 
       // Idle
     } else {
-        guy.setVelocityX(0);
-        guy.setVelocityY(0);
-
-      }
+      guy.setVelocityX(0);
+      guy.setVelocityY(0);
     }
   }
-
+}

@@ -12,30 +12,21 @@ export default class ElevatorScene extends Phaser.Scene {
     const y = 350;
 
     this.add.image(350, 250, "elevators");
-    this.player = new Character(this, x, y, "hope");
 
-    const hope = this.physics.add.image(400, 100, "hope");
     const map = this.make.tilemap({ key: "elevators_map" });
     const tileset = map.addTilesetImage("elevators_1", "elevators_1");
     const belowLayer = map.createLayer("below player", tileset);
     belowLayer.setCollisionByProperty({ collides: true });
-    this.player = new Character(this, x, y, "hope");
+    this.player = new Character(this, x, y, "julian");
+    this.add.image(350, 250, "textbox")
+	this.add.text(110, 465, "Good Morning! Approach the elevator button panel to get your day started", {color: "#000000"})
 
-    hope.setVelocity(100, 100);
-    hope.setBounce(1, 1);
-    hope.setCollideWorldBounds(true);
 
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();
 	nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
-
-    hope.setVelocity(500, 500);
-    hope.setBounce(1, 1);
-    hope.setCollideWorldBounds(true);
-    this.physics.add.collider(hope, belowLayer);
     this.physics.add.collider(this.player, belowLayer);
-    this.physics.add.collider(this.player, hope);
 
   }
   update(): void {

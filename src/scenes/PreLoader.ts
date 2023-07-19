@@ -19,13 +19,16 @@ export default class PreLoader extends Phaser.Scene {
           fontStyle: 'italic',
         }
       );
+    this.load.image("julian", "src/assets/sprites/julian.png");
     this.load.image("hope", "src/assets/sprites/hope.png");
     this.load.image("elevators_1", "src/assets/backgrounds/elevators.png");
     this.load.tilemapTiledJSON(
       "elevators_map",
       "src/assets/tilemaps/elevator.json"
     );
+    this.load.image("logo", "src/assets/sprites/logo.png");
     this.load.image("variant", "src/assets/sprites/variant.png");
+    this.load.image("textbox", "src/assets/sprites/textbox.png");
     this.load.image("hope", "src/assets/sprites/hope.png");
     this.load.image("desk", "src/assets/sprites/desk.png");
     this.load.image("chair", "src/assets/sprites/chair.png");
@@ -33,9 +36,12 @@ export default class PreLoader extends Phaser.Scene {
   }
 
   create() {
-    const nextButton = this.add.text(100, 250, "Loading...");
+    const rect = this.add.rectangle(350, 350, 100, 50, 623873254235);
+    const nextButton = this.add.text(325, 343, "Loading...");
 
-    nextButton.setText('Loading... Complete: click here to begin.');
+    this.add.image(350,150,"logo").setScale(.25,.25)
+    this.add.text(225, 270, " A Day at 620", {fontSize: '32px'})
+    nextButton.setText('START');
     nextButton.setInteractive();
 
     nextButton.on('pointerup', () => {
