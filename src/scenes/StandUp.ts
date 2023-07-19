@@ -40,6 +40,15 @@ export default class StandUp extends Phaser.Scene {
     this.physics.add.collider(this.player, world_layer);
     this.physics.add.collider(this.player, above_layer);
 
+    // Textbox
+    this.add.image(350, 250, "textbox");
+    this.add.text(
+      105,
+      465,
+      "Finally, you got into the office. Sit down to start squashing bugs.",
+      { color: "#000000", fontSize: "11.5px" }
+    );
+
     // Next Scene Button
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();

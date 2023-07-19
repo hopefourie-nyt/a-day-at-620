@@ -1,5 +1,11 @@
 import Phaser from "phaser";
 import { Character } from "../classes/character.js";
+import {
+  generateElevatorArrays,
+  generateNextCommand,
+  updateFloorNumbers,
+} from "./helpers.js";
+import { ElevatorMap } from "../types.js";
 
 export default class ElevatorPanel extends Phaser.Scene {
   player: Character | undefined;
@@ -23,94 +29,82 @@ export default class ElevatorPanel extends Phaser.Scene {
     bodyody.customBoundsRectangle = smallBounds;
 
     const allFloors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    function shuffle(array: number[]): number[] {
-      let currentIndex = array.length,
-        randomIndex;
-
-      // While there remain elements to shuffle.
-      while (currentIndex != 0) {
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex],
-          array[currentIndex],
-        ];
-      }
-
-      return array;
-    }
-    const generateElevatorArrays = () => {
-      let shuffledArray = shuffle(allFloors);
-      return [
-        [shuffledArray.pop(), shuffledArray.pop(), shuffledArray.pop()],
-        [shuffledArray.pop(), shuffledArray.pop()],
-        [shuffledArray.pop(), shuffledArray.pop(), shuffledArray.pop()],
-        [shuffledArray.pop(), shuffledArray.pop()],
-        [shuffledArray.pop(), shuffledArray.pop(), shuffledArray.pop()],
-        [shuffledArray.pop(), shuffledArray.pop()],
-      ];
-    };
 
     // Elevator door group
     const elevatorGroup = this.physics.add.staticGroup();
-    elevatorGroup.create(150, 150, "elevator-door");
-    elevatorGroup.create(350, 150, "elevator-door");
-    elevatorGroup.create(550, 150, "elevator-door");
-    elevatorGroup.create(150, 360, "elevator-door");
-    elevatorGroup.create(350, 360, "elevator-door");
-    elevatorGroup.create(550, 360, "elevator-door");
-    console.log(elevatorGroup.getChildren());
+    const El1 = elevatorGroup.create(150, 150, "elevator-door");
+    const El2 = elevatorGroup.create(350, 150, "elevator-door");
+    const El3 = elevatorGroup.create(550, 150, "elevator-door");
+    const El4 = elevatorGroup.create(150, 360, "elevator-door");
+    const El5 = elevatorGroup.create(350, 360, "elevator-door");
+    const El6 = elevatorGroup.create(550, 360, "elevator-door");
 
+    const elevatorArrays = generateElevatorArrays();
     // Elevator 1
     this.add.rectangle(150, 85, 93, 20, 0x000000);
-    let firstDoorFloorText = this.add.text(110, 80, "2, 5, 14", { color: "#FCFF2A" });
+    let firstDoorFloorText = this.add.text(
+      110,
+      80,
+      elevatorArrays[0].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(112, 100, "Elevator", { color: "#000000" });
     this.add.text(120, 110, "1", { color: "#000000", fontSize: "100px" });
 
     // Elevator 2
     this.add.rectangle(350, 85, 93, 20, 0x000000);
-    let secondDoorFloorText = this.add.text(330, 80, "1, 7", { color: "#FCFF2A" });
+    let secondDoorFloorText = this.add.text(
+      330,
+      80,
+      elevatorArrays[1].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(312, 100, "Elevator", { color: "#000000" });
     this.add.text(320, 110, "2", { color: "#000000", fontSize: "100px" });
 
     // Elevator 3
     this.add.rectangle(550, 85, 93, 20, 0x000000);
-    let thirdDoorFloorText = this.add.text(510, 80, "3, 9, 15", { color: "#FCFF2A" });
+    let thirdDoorFloorText = this.add.text(
+      510,
+      80,
+      elevatorArrays[2].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(512, 100, "Elevator", { color: "#000000" });
     this.add.text(520, 110, "3", { color: "#000000", fontSize: "100px" });
 
     // Elevator 4
     this.add.rectangle(150, 295, 93, 20, 0x000000);
-    let fourthDoorFloorText = this.add.text(125, 290, "8, 11", { color: "#FCFF2A" });
+    let fourthDoorFloorText = this.add.text(
+      125,
+      290,
+      elevatorArrays[3].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(112, 310, "Elevator", { color: "#000000" });
     this.add.text(120, 320, "4", { color: "#000000", fontSize: "100px" });
 
     // Elevator 5
     this.add.rectangle(350, 295, 93, 20, 0x000000);
-    let fifthDoorFloorText = this.add.text(310, 290, "4, 6, 12", { color: "#FCFF2A" });
+    let fifthDoorFloorText = this.add.text(
+      310,
+      290,
+      elevatorArrays[4].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(312, 310, "Elevator", { color: "#000000" });
     this.add.text(320, 320, "5", { color: "#000000", fontSize: "100px" });
 
     // Elevator 6
     this.add.rectangle(550, 295, 93, 20, 0x000000);
-    let sixthDoorFloorText = this.add.text(520, 290, "10, 13", { color: "#FCFF2A" });
+    let sixthDoorFloorText = this.add.text(
+      520,
+      290,
+      elevatorArrays[5].join(","),
+      { color: "#FCFF2A" }
+    );
     this.add.text(512, 310, "Elevator", { color: "#000000" });
     this.add.text(520, 320, "6", { color: "#000000", fontSize: "100px" });
-
-    // Update Floor Numbers
-    const updateFloorNumbers = () => {
-        let newElevatorArrays = generateElevatorArrays()
-        firstDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-        secondDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-        thirdDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-        fourthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-        fifthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-        sixthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
-
-    }
 
     // Try again button
     const tryAgainButton = this.add.rectangle(350, 250, 200, 100, 623873254235);
@@ -130,25 +124,36 @@ export default class ElevatorPanel extends Phaser.Scene {
       { color: "#FFFFFF" }
     );
 
-    const generateNextCommand = () => {
-      const correctDoorNum = Math.floor(Math.random() * 15);
-      command.setText(`Please go to the elevator going to floor ${correctDoorNum}`);
-    };
-
     // Collision Logic
-    const collisionHelper = (idx: number) => {
-      if (idx === correctDoorNum) {
-        console.log("first", idx);
-        generateNextCommand();
+    const collisionHelper = (door: any) => {
+      const map: ElevatorMap = {
+        0: El1,
+        1: El2,
+        2: El3,
+        3: El4,
+        4: El5,
+        5: El6,
+      };
+      let correctElevator: any;
+      elevatorArrays.forEach((el, idx) => {
+        if (el.includes(correctDoorNum)) correctElevator = map[idx];
+      });
+      if (door === correctElevator) {
+        generateElevatorArrays();
+        updateFloorNumbers(
+          firstDoorFloorText,
+          secondDoorFloorText,
+          thirdDoorFloorText,
+          fourthDoorFloorText,
+          fifthDoorFloorText,
+          sixthDoorFloorText
+        );
+        generateNextCommand(correctDoorNum, command);
       } else {
-        console.log("second", idx);
-
         tryAgainButton.visible = true;
         tryAgainText.visible = true;
         tryAgainButton.setInteractive();
         this.pausePhysics = true;
-        console.log("in collisionHelper", this.pausePhysics);
-
         tryAgainButton.on("pointerup", () => {
           this.pausePhysics = false;
           tryAgainButton.visible = false;
@@ -160,9 +165,7 @@ export default class ElevatorPanel extends Phaser.Scene {
     let counter: number = 1;
     for (const door of elevatorGroup.getChildren()) {
       this.physics.add.existing(door);
-      this.physics.add.collider(this.player, door, () =>
-        collisionHelper(counter)
-      );
+      this.physics.add.collider(this.player, door, () => collisionHelper(door));
       counter++;
     }
 
@@ -177,7 +180,6 @@ export default class ElevatorPanel extends Phaser.Scene {
     });
   }
   update(): void {
-    console.log("in update", this.pausePhysics);
     if (this.pausePhysics === false) this.player?.update();
   }
 }

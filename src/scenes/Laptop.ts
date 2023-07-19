@@ -1,28 +1,46 @@
 import Phaser from "phaser";
-import { Character } from "../classes/character.js";
 
 export default class Laptop extends Phaser.Scene {
-  player: Character | undefined;
-  constructor() {
+fist: Phaser.Types.Physics.Arcade.ImageWithDynamicBody | undefined
+space: any;
+constructor() {
     super("Laptop");
   }
 
   create() {
-    const x = 650;
-    const y = 250;
-    this.add.image(350, 150, "laptop");
-    
+    const x = 300;
+    const y = 0;
+
+    //background
+    this.add.image(350, 250, "laptop");
+    //fist
+    this.fist = this.physics.add.image(0, 0, 'big-fist')
+    //fist physics
+    this.fist.setVelocity(400, 0)
+    this.fist.setBounce(1, 0)
+	this.fist.setCollideWorldBounds(true)
+       // key objects
+    this.space = this.input.keyboard.addKey(
+        Phaser.Input.Keyboard.KeyCodes.SPACE
+      );
+
     // Resume Scene Button
-    const ResumeButton = this.add.text(550, 450, "Resume Scene", {
-      color: "000000",
-    });
+    const ResumeButton = this.add.text(100, 100, "Resume Scene", {color: '000000'});
     ResumeButton.setInteractive();
     ResumeButton.on("pointerdown", () => {
-      this.scene.resume("ElevatorScene");
+      this.scene.resume("StandUp");
       this.scene.stop();
     });
   }
   update(): void {
-    this.player?.update();
+    if (this.space.isDown){
+        this.fist?.setVelocity(0, 600);
+    }
+    else if (this.fist?.y && this.fist.y > 42){
+        console.log(this.fist?.y)
+        this.fist?.setVelocity(0, -600);
+    }else if (this.fist?.body.velocity.x == 0){
+        this.fist?.setVelocity(400, 0);
+    }
   }
 }
