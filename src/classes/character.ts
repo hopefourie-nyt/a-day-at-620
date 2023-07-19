@@ -3,7 +3,7 @@ import Phaser from "phaser";
 export class Character extends Phaser.GameObjects.Sprite {
   cursors: any;
   facingLeft: boolean;
-  constructor(scene: any, x: number, y: number, texture: string) {
+  constructor(scene: any, x: number, y: number, texture: string, scaleX:number = 11, scaleY:number =16) {
     super(scene, x, y, texture);
 
     // Making the homie
@@ -14,7 +14,7 @@ export class Character extends Phaser.GameObjects.Sprite {
 
     // Player Config
     this.facingLeft = false;
-    this.setScale(11 / 16);
+    this.setScale(scaleX / scaleY);
     guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
 

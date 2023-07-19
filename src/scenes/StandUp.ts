@@ -9,8 +9,8 @@ export default class StandUp extends Phaser.Scene {
 
 
 	create() {
-		const x = 300
-		const y = 350
+		const x = 650
+		const y = 250
 		const map = this.make.tilemap({ key: "room_map" });
     	const room_tile = map.addTilesetImage("conference-room", "conference-room");
 		const desk_tile = map.addTilesetImage("desk", "desk");
