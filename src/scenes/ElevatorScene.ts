@@ -21,7 +21,7 @@ export default class ElevatorScene extends Phaser.Scene {
     const portals_layer = map.createLayer("portals", tileset);
 
     belowLayer.setCollisionByProperty({ collides: true });
-    portals_layer.setCollisionByProperty({collides: true});
+    portals_layer.setCollisionByProperty({transition: true});
     this.player = new Character(this, x, y, "julian");
     
 	// Textbox
