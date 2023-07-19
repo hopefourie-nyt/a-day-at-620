@@ -18,10 +18,13 @@ export default class ElevatorScene extends Phaser.Scene {
     const map = this.make.tilemap({ key: "elevators_map" });
     const tileset = map.addTilesetImage("elevators_1", "elevators_1");
     const belowLayer = map.createLayer("below player", tileset);
-    belowLayer.setCollisionByProperty({ collides: true });
+    const portals_layer = map.createLayer("portals", tileset);
 
-    // Player
+    belowLayer.setCollisionByProperty({ collides: true });
+    portals_layer.setCollisionByProperty({collides: true});
     this.player = new Character(this, x, y, "julian");
+    this.add.image(350, 250, "textbox")
+	  this.add.text(110, 465, "Good Morning! Approach the elevator button panel to get your day started", {color: "#000000"})
 
 	// Textbox
     this.add.image(350, 250, "textbox");
@@ -43,11 +46,11 @@ export default class ElevatorScene extends Phaser.Scene {
 	// Next Scene Button
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();
-    nextButton.on("pointerdown", () => {
-      this.scene.start("StandUp");
-    });
+	  nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
-    this.physics.add.collider(this.player, belowLayer);
+    //this.physics.add.collider(this.player, belowLayer);
+    this.physics.add.collider(this.player, portals_layer, () => { this.scene.start('StandUp') });
+
   }
   update(): void {
     this.player?.update();
