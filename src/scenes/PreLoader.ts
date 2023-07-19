@@ -33,7 +33,11 @@ export default class PreLoader extends Phaser.Scene {
     this.load.image("hope", "src/assets/sprites/hope.png");
     this.load.image("desk", "src/assets/sprites/desk.png");
     this.load.image("chair", "src/assets/sprites/chair.png");
-    this.load.image("elevators", "src/assets/backgrounds/conference-room.png");
+    this.load.image('conference-room', 'src/assets/backgrounds/conference-room.png')
+		this.load.tilemapTiledJSON(
+			"room_map",
+			"src/assets/tilemaps/conference-room.json"
+		  )
   }
 
   create() {
