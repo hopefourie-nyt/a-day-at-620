@@ -103,9 +103,14 @@ export default class ElevatorPanel extends Phaser.Scene {
     // Update Floor Numbers
     const updateFloorNumbers = () => {
         let newElevatorArrays = generateElevatorArrays()
-        firstDoorFloorText.setText(``)
-    }
+        firstDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
+        secondDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
+        thirdDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
+        fourthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
+        fifthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
+        sixthDoorFloorText.setText(`${newElevatorArrays[0].join(', ')}`)
 
+    }
 
     // Try again button
     const tryAgainButton = this.add.rectangle(350, 250, 200, 100, 623873254235);
@@ -127,8 +132,10 @@ export default class ElevatorPanel extends Phaser.Scene {
 
     const generateNextCommand = () => {
       const correctDoorNum = Math.floor(Math.random() * 15);
-      //command.updateText = `Please go to the elevator going to floor ${correctDoorNum}`;
+      command.setText(`Please go to the elevator going to floor ${correctDoorNum}`);
     };
+
+    // Collision Logic
     const collisionHelper = (idx: number) => {
       if (idx === correctDoorNum) {
         console.log("first", idx);
@@ -158,10 +165,6 @@ export default class ElevatorPanel extends Phaser.Scene {
       );
       counter++;
     }
-
-    // elevatorGroup.getChildren().forEach((door, idx)=>{
-    //     this.physics.world.collide(this.player, door, collisionHelper(idx));
-    // })
 
     // Resume Scene Button
     const ResumeButton = this.add.text(550, 450, "Resume Scene", {
