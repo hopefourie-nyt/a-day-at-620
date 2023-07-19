@@ -40,8 +40,8 @@ export default class ElevatorScene extends Phaser.Scene {
     nextButton.setInteractive();
 	  nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
 
-    //this.physics.add.collider(this.player, belowLayer);
-    this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
+  this.physics.add.collider(this.player, belowLayer);
+  this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
 	this.scene.pause() });
 
   }
