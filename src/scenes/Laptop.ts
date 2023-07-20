@@ -25,11 +25,18 @@ constructor() {
       );
 
     // Resume Scene Button
-    const ResumeButton = this.add.text(100, 100, "Resume Scene", {color: '000000'});
+    const ResumeButton = this.add.text(100, 400, "Resume Scene", {color: '#FFFFFF'});
     ResumeButton.setInteractive();
     ResumeButton.on("pointerdown", () => {
       this.scene.resume("StandUp");
       this.scene.stop();
+    });
+
+    // Next Scene Button
+    const NextButton = this.add.text(500, 400, "Next Scene", {color: '#FFFFFF'});
+    NextButton.setInteractive();
+    NextButton.on("pointerdown", () => {
+      this.scene.start("Subway");
     });
   }
   update(): void {

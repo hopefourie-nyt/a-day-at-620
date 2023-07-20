@@ -39,12 +39,12 @@ export default class ElevatorScene extends Phaser.Scene {
     );
     animateText(text);
 
-    // Next Scene Button
-    const nextButton = this.add.text(100, 100, "Next Scene");
-    nextButton.setInteractive();
-    nextButton.on("pointerdown", () => {
-      this.scene.start("StandUp", {playerImageKey: this.playerImageKey});
-    });
+    // // Next Scene Button
+    // const nextButton = this.add.text(100, 100, "Next Scene");
+    // nextButton.setInteractive();
+    // nextButton.on("pointerdown", () => {
+    //   this.scene.start("StandUp", {playerImageKey: this.playerImageKey});
+    // });
 
     this.physics.add.collider(this.player, belowLayer);
     this.physics.add.collider(this.player, portals_layer, () => {

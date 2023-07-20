@@ -55,22 +55,22 @@ export class Character extends Phaser.GameObjects.Sprite {
     let guy = <Phaser.Physics.Arcade.Body>this.body;
     // Move Left
     if (this.cursors.keyobj_left.isDown) {
-      guy.setVelocityX(-100);
+      guy.setVelocityX(-140);
       if (!this.facingLeft) {
         this.flipX = !this.flipX;
         this.facingLeft = !this.facingLeft;
       }
       // Move Right
     } else if (this.cursors.keyobj_right.isDown) {
-      guy.setVelocityX(100);
+      guy.setVelocityX(140);
       if (this.facingLeft) {
         this.flipX = !this.flipX;
         this.facingLeft = !this.facingLeft;
       }
     } else if (this.cursors.keyobj_up.isDown) {
-      guy.setVelocityY(-100);
+      guy.setVelocityY(-140);
     } else if (this.cursors.keyobj_down.isDown) {
-      guy.setVelocityY(100);
+      guy.setVelocityY(140);
 
       // Idle
     } else {
