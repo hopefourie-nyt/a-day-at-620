@@ -39,7 +39,7 @@ export default class Intro extends Phaser.Scene {
         this.time.addEvent({
             delay: 500,
             callback: () => {
-              this.scene.start("Subway", {playerImageKey: this.playerImageKey});
+              this.scene.start("Snacks", {playerImageKey: this.playerImageKey});
             },
             loop: false,
           });
