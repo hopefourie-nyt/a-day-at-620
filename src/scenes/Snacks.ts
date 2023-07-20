@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import { Character } from "../classes/character";
 import { animateText } from "./helpers";
 import { Snacker } from "../classes/snacker";
 
@@ -125,6 +124,11 @@ export default class Snacks extends Phaser.Scene {
         loop: false,
       });
     });
+
+    this.add.rectangle(310, 5070, 620, 70, 0x5F9A93).setOrigin(.5)
+    this.add.rectangle(310, 5070, 600, 50, 0x84B7B1).setOrigin(.5)
+    this.add.text(310, 5070, "Alternate the up and left arrow keys to race up the stairs", {color: '#000000'}).setOrigin(.5)
+
   }
   update(): void {
     this.player?.update();

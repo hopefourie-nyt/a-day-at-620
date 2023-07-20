@@ -3,8 +3,12 @@ import Phaser from "phaser";
 export default class Laptop extends Phaser.Scene {
 fist: Phaser.Types.Physics.Arcade.ImageWithDynamicBody | undefined
 space: any;
+  playerImageKey: any;
 constructor() {
     super("Laptop");
+  }
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
   }
 
   create() {
@@ -36,7 +40,7 @@ constructor() {
     const NextButton = this.add.text(500, 400, "Next Scene", {color: '#FFFFFF'});
     NextButton.setInteractive();
     NextButton.on("pointerdown", () => {
-      this.scene.start("Subway");
+      this.scene.start("Snacks", {playerImageKey: this.playerImageKey});
     });
   }
   update(): void {
