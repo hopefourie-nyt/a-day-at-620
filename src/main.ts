@@ -23,6 +23,8 @@ const config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
+			debug: true,
+
 		},
 	},
 	scene: [ PreLoader, Intro, ElevatorScene, ElevatorPanel, StandUp, Laptop, Snacks, LongDay, Subway],
