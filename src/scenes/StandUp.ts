@@ -63,7 +63,7 @@ export default class StandUp extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, myChair, () => {
         this.time.addEvent({
-          delay: 1500,
+          delay: 1000,
           callback: () => {
             this.scene.launch("Laptop", {playerImageKey: this.playerImageKey});
             this.scene.pause();

@@ -7,6 +7,7 @@ import ElevatorPanel from './scenes/ElevatorPanel'
 import Laptop from './scenes/Laptop'
 import Subway from './scenes/Subway'
 import Intro from './scenes/Intro'
+import SnackNotification from './scenes/SnackNotification'
 import Snacks from './scenes/Snacks'
 import LongDay from './scenes/LongDay'
 
@@ -23,9 +24,11 @@ const config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
+			//debug: true,
+
 		},
 	},
-	scene: [ PreLoader, Intro, ElevatorScene, ElevatorPanel, StandUp, Laptop, Snacks, LongDay, Subway],
+	scene: [ PreLoader, Intro, ElevatorScene, ElevatorPanel, StandUp, Laptop, Snacks, LongDay, Subway, SnackNotification],
 }
 
 export default new Phaser.Game(config)
