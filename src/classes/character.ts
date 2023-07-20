@@ -8,12 +8,13 @@ export class Character extends Phaser.GameObjects.Sprite {
 
     // Making the homie
     this.setTexture(texture);
+    this.flipX = true
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     let guy = <Phaser.Physics.Arcade.Body>this.body;
 
     // Player Config
-    this.facingLeft = false;
+    this.facingLeft = true;
     this.setScale(scaleX / scaleY);
     guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
@@ -57,14 +58,14 @@ export class Character extends Phaser.GameObjects.Sprite {
       guy.setVelocityX(-100);
       if (!this.facingLeft) {
         this.flipX = !this.flipX;
-        this.facingLeft = true;
+        this.facingLeft = !this.facingLeft;
       }
       // Move Right
     } else if (this.cursors.keyobj_right.isDown) {
       guy.setVelocityX(100);
       if (this.facingLeft) {
         this.flipX = !this.flipX;
-        this.facingLeft = false;
+        this.facingLeft = !this.facingLeft;
       }
     } else if (this.cursors.keyobj_up.isDown) {
       guy.setVelocityY(-100);

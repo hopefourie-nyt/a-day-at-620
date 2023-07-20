@@ -4,15 +4,19 @@ import { animateText } from "./helpers.js";
 
 export default class ElevatorScene extends Phaser.Scene {
   player: Character | undefined;
+  playerImageKey: any;
   constructor() {
     super("ElevatorScene");
+  }
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
   }
 
   create() {
     const x = 340;
     const y = 200;
 
-// Background
+    // Background
     this.add.image(350, 250, "elevators");
 
     // Tilemap
@@ -22,10 +26,10 @@ export default class ElevatorScene extends Phaser.Scene {
     const portals_layer = map.createLayer("portals", tileset);
 
     belowLayer.setCollisionByProperty({ collides: true });
-    portals_layer.setCollisionByProperty({transition: true});
-    this.player = new Character(this, x, y, "julian");
-    
-	// Textbox
+    portals_layer.setCollisionByProperty({ transition: true });
+    this.player = new Character(this, x, y, this.playerImageKey);
+
+    // Textbox
     this.add.image(350, -150, "textbox");
     let text = this.add.text(
       105,
@@ -33,19 +37,26 @@ export default class ElevatorScene extends Phaser.Scene {
       "Good Morning! Approach the elevator button panel to get your day started",
       { color: "#000000", fontSize: "11.5px" }
     );
-    animateText(text)
+    animateText(text);
 
-	
-	
-	// Next Scene Button
+    // Next Scene Button
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();
-	  nextButton.on('pointerdown', () => { this.scene.start('StandUp') });
+    nextButton.on("pointerdown", () => {
+      this.scene.start("StandUp", {playerImageKey: this.playerImageKey});
+    });
 
-  this.physics.add.collider(this.player, belowLayer);
-  this.physics.add.collider(this.player, portals_layer, () => { this.scene.launch("ElevatorPanel")
-	this.scene.pause() });
-
+    this.physics.add.collider(this.player, belowLayer);
+    this.physics.add.collider(this.player, portals_layer, () => {
+      this.time.addEvent({
+        delay: 500,
+        callback: () => {
+          this.scene.launch("ElevatorPanel", {playerImageKey: this.playerImageKey});
+          this.scene.pause();
+        },
+        loop: false,
+      });
+    });
   }
   update(): void {
     this.player?.update();

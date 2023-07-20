@@ -14,7 +14,6 @@ export const generateNextCommand = (correctDoorNum: number, command:any) => {
 };
 export const generateElevatorArrays = () => {
   let shuffledArray = shuffle(allFloors);
-  console.log("allfloors", allFloors)
   return [
     [shuffledArray[1], shuffledArray[2], shuffledArray[3]],
     [shuffledArray[4], shuffledArray[5]],

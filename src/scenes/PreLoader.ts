@@ -68,19 +68,28 @@ export default class PreLoader extends Phaser.Scene {
   create() {
     this.music = this.sound.add('lofi');
 
-    const rect = this.add.rectangle(350, 370, 100, 50, 623873254235);
-    const nextButton = this.add.text(325, 363, "Loading...");
+    this.add.rectangle(350, 350, 360, 170, 0x727230423).setOrigin(.5)
+    const hope = this.add.sprite(250, 370, "hope").setOrigin(.5);
+    const julian = this.add.sprite(450, 370, "julian").setOrigin(.5);
 
-    this.add.image(345, 170, "logo").setScale(0.25, 0.25);
-    this.add.text(220, 290, " A Day at 620", { fontSize: "32px" });
-    nextButton.setText("START");
-    rect.setInteractive();
+    const startText = this.add.text(350, 290, "Loading...").setOrigin(.5);
 
-    rect.on("pointerup", () => {
-      this.start();
+    this.add.image(350, 100, "logo").setScale(0.25, 0.25).setOrigin(.5);
+    this.add.text(220, 210, " A Day at 620", { fontSize: "32px" });
+    startText.setText("Select a character to start your day").setOrigin(.5);
+    
+
+    hope.setInteractive();
+    julian.setInteractive();
+
+    hope.on("pointerup", () => {
+      this.start("hope");
     });
+    julian.on("pointerup", () => {
+        this.start("julian");
+      });
   }
-  start() {
+  start(character:string) {
     // Need user input for music so I've tied it with starting the game... don't ask :(
     this.music?.play({
         mute: false,
@@ -89,6 +98,6 @@ export default class PreLoader extends Phaser.Scene {
       });
     this.scene.start('Intro', {
       music: this.music,
-    });
+      playerImageKey: character  });
   }
 }

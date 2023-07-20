@@ -11,25 +11,26 @@ import { ElevatorMap } from "../types.js";
 export default class ElevatorPanel extends Phaser.Scene {
   player: Character | undefined;
   pausePhysics: boolean | undefined;
+    playerImageKey: any;
   constructor() {
     super("ElevatorPanel");
+  }
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
   }
 
   create() {
     const x = 250;
     const y = 350;
     this.pausePhysics = false;
-    console.log(this.pausePhysics);
     this.add.image(350, 250, "panel");
 
     const smallBounds = new Phaser.Geom.Rectangle(70, 50, 560, 380);
 
-    this.player = new Character(this, x, y, "hope", 1, 2);
+    this.player = new Character(this, x, y, this.playerImageKey, 1, 2);
     const bodyody = <Phaser.Physics.Arcade.Body>this.player.body;
 
     bodyody.customBoundsRectangle = smallBounds;
-
-    const allFloors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
     // Elevator door group
     const elevatorGroup = this.physics.add.staticGroup();

@@ -6,13 +6,15 @@ export default class Subway extends Phaser.Scene {
   fist: Phaser.Types.Physics.Arcade.ImageWithDynamicBody | undefined;
   space: any;
   player: any;
+    playerImageKey: any;
   constructor() {
     super("Subway");
   }
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
+  }
 
   create() {
-    const x = 550;
-    const y = 480;
 
     const width = this.scale.width;
     const height = this.scale.height;
@@ -30,11 +32,12 @@ export default class Subway extends Phaser.Scene {
       .setScrollFactor(0);
 
     // Character
-    this.player = new Character(this, x, y, "hope", 2, 1).setScrollFactor(0);
+    let hope = new Character(this, 450, 480, "hope", 3, 2).setScrollFactor(0);
+    hope.flipX = true
+    new Character(this, 620, 480, "julian", 3, 2).setScrollFactor(0);
 
-    // let box = this.add.rectangle(200, 200, 300, 200, 0x000000, 60000).setOrigin(0.5).setScrollFactor(0)
     let credits = this.add
-      .text(275, 450, "\n Created by \n Hope Fourie and Julian Meltzer", {
+      .text(195, 450, "\n Created by \n Hope Fourie and Julian Meltzer", {
         fontSize: "20px",
         color: "#FFFFFF",
       })

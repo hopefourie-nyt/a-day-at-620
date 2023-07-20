@@ -7,10 +7,13 @@ export default class Intro extends Phaser.Scene {
   space: any;
   player: any;
   taxi: Phaser.GameObjects.Image | undefined;
+    playerImageKey: any;
   constructor() {
     super("Intro");
   }
-
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
+  }
   create() {
     const x = 550;
     const y = 450;
@@ -38,19 +41,35 @@ export default class Intro extends Phaser.Scene {
       .setScale(3 / 4)
       .setOrigin(0.5);
     this.physics.world.enableBody(door);
+    door.body = <Phaser.Physics.Arcade.Body>door.body;
+    door.body.setImmovable(true);
+    console.log(this.data.list);
+    this.player = new Character(
+      this,
+      x,
+      y,
+      this.playerImageKey,
+      3,
+      4
+    );
 
-    this.player = new Character(this, x, y, "hope", 3, 4);
-
-    this.physics.add.collider(this.player, door, () => {
-      this.scene.start("ElevatorScene");
+    this.physics.add.overlap(this.player, door, () => {
+      this.time.addEvent({
+        delay: 500,
+        callback: () => {
+          this.scene.start("ElevatorScene", {playerImageKey: this.playerImageKey});
+        },
+        loop: false,
+      });
     });
 
-    this.taxi = this.add.image(580, 450, "taxi").setScale(3 / 4);
+    this.taxi = this.add.image(0, 450, "taxi").setScale(3 / 4);
+    this.taxi.flipX = true
     this.taxi.body = <Phaser.Physics.Arcade.Body>this.taxi.body;
 
     this.physics.world.enableBody(this.taxi);
 
-    this.taxi.body.setVelocityX(-100);
+    this.taxi.body.setVelocityX(100);
   }
   update(): void {
     this.player?.update();

@@ -4,8 +4,12 @@ import { animateText } from "./helpers.js";
 
 export default class StandUp extends Phaser.Scene {
   player: Character | undefined;
+    playerImageKey: any;
   constructor() {
     super("StandUp");
+  }
+  init(data: any) {
+    this.playerImageKey = data.playerImageKey 
   }
 
   create() {
@@ -36,7 +40,7 @@ export default class StandUp extends Phaser.Scene {
     let chair2 = this.add.image(500, 370, "chair");
     chair2.flipX = true;
 
-    this.player = new Character(this, x, y, "hope");
+    this.player = new Character(this, x, y, this.playerImageKey);
     this.physics.add.collider(this.player, below_layer);
     this.physics.add.collider(this.player, world_layer);
     this.physics.add.collider(this.player, above_layer);
@@ -63,8 +67,7 @@ export default class StandUp extends Phaser.Scene {
     const nextButton = this.add.text(100, 100, "Next Scene");
     nextButton.setInteractive();
     nextButton.on("pointerdown", () => {
-        this.scene.launch("Subway");
-        this.scene.pause();
+        this.scene.start("Subway", {playerImageKey: this.playerImageKey});
     });
   }
   update(): void {
