@@ -60,7 +60,11 @@ export const updateFloorNumbers = (
  * @param {number} [speedInMs=25]
  * @returns {Promise<void>}
  */
-export function animateText(target: Phaser.GameObjects.Text, speedInMs = 25) {
+export function animateText(target: Phaser.GameObjects.Text | undefined, speedInMs = 25) {
+  if(!target){
+    console.log("undefined text")
+    return;
+  }
   // store original text
   const message = target.text;
   const invisibleMessage = message.replace(/[^ ]/g, " ");
