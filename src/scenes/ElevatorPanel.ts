@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { Character } from "../classes/character.js";
 import {
+    animateText,
   generateElevatorArrays,
   generateNextCommand,
   updateFloorNumbers,
@@ -123,6 +124,7 @@ export default class ElevatorPanel extends Phaser.Scene {
       `Please go to the elevator going to floor ${correctDoorNum}`,
       { color: "#FFFFFF" }
     );
+    animateText(command)
 
     // Collision Logic
     const collisionHelper = (door: any) => {

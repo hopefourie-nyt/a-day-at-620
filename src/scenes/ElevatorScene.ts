@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { Character } from "../classes/character.js";
+import { animateText } from "./helpers.js";
 
 export default class ElevatorScene extends Phaser.Scene {
   player: Character | undefined;
@@ -26,12 +27,13 @@ export default class ElevatorScene extends Phaser.Scene {
     
 	// Textbox
     this.add.image(350, -150, "textbox");
-    this.add.text(
+    let text = this.add.text(
       105,
       65,
       "Good Morning! Approach the elevator button panel to get your day started",
       { color: "#000000", fontSize: "11.5px" }
     );
+    animateText(text)
 
 	
 	
