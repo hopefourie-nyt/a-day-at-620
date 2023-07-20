@@ -51,6 +51,7 @@ export default class PreLoader extends Phaser.Scene {
     this.load.image("laptop", "src/assets/backgrounds/laptop.png");
 
     // Sprites
+    this.load.image("union-bug", "src/assets/sprites/union-bug.png");
     this.load.image("eric", "src/assets/sprites/eric.png");
     this.load.image("sam", "src/assets/sprites/sam.png");
     this.load.image("ken", "src/assets/sprites/ken.png");
@@ -72,13 +73,13 @@ export default class PreLoader extends Phaser.Scene {
 
   create() {
     this.music = this.sound.add('lofi');
+    this.add.image(620, 460, "union-bug").setScale(0.04, 0.04).setOrigin(.5);
 
     this.add.rectangle(350, 350, 360, 170, 0x727230423).setOrigin(.5)
     const hope = this.add.sprite(250, 370, "hope").setOrigin(.5);
     const julian = this.add.sprite(450, 370, "julian").setOrigin(.5);
 
     const startText = this.add.text(350, 290, "Loading...").setOrigin(.5);
-
     this.add.image(350, 100, "logo").setScale(0.25, 0.25).setOrigin(.5);
     this.add.text(220, 210, " A Day at 620", { fontSize: "32px" });
     startText.setText("Select a character to start your day").setOrigin(.5);
@@ -101,7 +102,7 @@ export default class PreLoader extends Phaser.Scene {
         volume: 0.35,
         loop: true,
       });
-    this.scene.start('StandUp', {
+    this.scene.start('Snacks', {
       music: this.music,
       playerImageKey: character  });
   }
