@@ -51,11 +51,16 @@ export default class PreLoader extends Phaser.Scene {
     this.load.image("laptop", "src/assets/backgrounds/laptop.png");
 
     // Sprites
+    this.load.image("corridor", "src/assets/sprites/corridor.png");
+    this.load.image("snack", "src/assets/sprites/snack.png");
+
+    this.load.image("stairs", "src/assets/sprites/stairs.png");
     this.load.image("union-bug", "src/assets/sprites/union-bug.png");
     this.load.image("eric", "src/assets/sprites/eric.png");
     this.load.image("sam", "src/assets/sprites/sam.png");
     this.load.image("ken", "src/assets/sprites/ken.png");
-    this.load.image("tristan", "src/assets/sprites/eric.png");
+    this.load.image("tristan", "src/assets/sprites/tristan.png");
+    this.load.image("stair", "src/assets/sprites/stair.png");
 
     this.load.image("taxi", "src/assets/sprites/taxi.png");
     this.load.image("elevator-door", "src/assets/sprites/elevator-door.png");
@@ -102,7 +107,7 @@ export default class PreLoader extends Phaser.Scene {
         volume: 0.35,
         loop: true,
       });
-    this.scene.start('Snacks', {
+    this.scene.start('Intro', {
       music: this.music,
       playerImageKey: character  });
   }

@@ -8,6 +8,7 @@ import Laptop from './scenes/Laptop'
 import Subway from './scenes/Subway'
 import Intro from './scenes/Intro'
 import Snacks from './scenes/Snacks'
+import LongDay from './scenes/LongDay'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -24,7 +25,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 0 },
 		},
 	},
-	scene: [ PreLoader, Snacks, Intro, ElevatorScene, ElevatorPanel, StandUp, Laptop, Subway],
+	scene: [ PreLoader, Intro, ElevatorScene, ElevatorPanel, StandUp, Laptop, Snacks, LongDay, Subway],
 }
 
 export default new Phaser.Game(config)

@@ -62,7 +62,7 @@ export default class Intro extends Phaser.Scene {
         loop: false,
       });
     });
-
+// Taxi physics
     this.taxi = this.add.image(0, 450, "taxi").setScale(3 / 4);
     this.taxi.flipX = true
     this.taxi.body = <Phaser.Physics.Arcade.Body>this.taxi.body;
