@@ -45,6 +45,12 @@ export default class StandUp extends Phaser.Scene {
     this.add.image(250, 370, "chair");
     let chair2 = this.add.image(500, 370, "chair");
     chair2.flipX = true;
+    if (this.playerImageKey == "julian"){
+      this.add.sprite(260, 335, "hope").setScale(3/4);
+    } else {
+      this.add.sprite(260, 330, "julian").setScale(3/4);
+    }
+
     this.add.sprite(215, 165, "eric").setScale(3/4)
     let sam = this.add.sprite(385, 165, "sam").setScale(3/4)
     sam.flipX = true
