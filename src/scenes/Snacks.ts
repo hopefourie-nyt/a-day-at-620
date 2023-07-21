@@ -96,7 +96,7 @@ export default class Snacks extends Phaser.Scene {
       this.time.addEvent({
         delay: 1000,
         callback: () => {
-          this.scene.launch("LongDay", {playerImageKey: this.playerImageKey});
+          this.scene.launch("LongDay", {playerImageKey: this.playerImageKey, cupcake: true});
         this.scene.pause()
         },
         loop: false,

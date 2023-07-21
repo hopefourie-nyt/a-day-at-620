@@ -116,7 +116,7 @@ export default class PreLoader extends Phaser.Scene {
         volume: 0.35,
         loop: true,
       });
-    this.scene.start('Intro', {
+    this.scene.start('StandUp', {
       music: this.music,
       playerImageKey: character  });
   }

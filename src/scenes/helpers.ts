@@ -62,7 +62,6 @@ export const updateFloorNumbers = (
  */
 export function animateText(target: Phaser.GameObjects.Text | undefined, speedInMs = 25) {
   if(!target){
-    console.log("undefined text")
     return;
   }
   // store original text

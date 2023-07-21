@@ -24,6 +24,9 @@ export default class StandUp extends Phaser.Scene {
     chair3.flipX = true;
     let chair4 = this.add.image(550, 200, "chair");
     chair4.flipX = true;
+    let ken = this.add.sprite(550, 165, "ken").setScale(3/4)
+    ken.flipX=true
+
     this.add.image(200, 200, "chair");
 
     const below_layer = map.createLayer("below", desk_tile);
@@ -42,7 +45,7 @@ export default class StandUp extends Phaser.Scene {
     this.add.image(250, 370, "chair");
     let chair2 = this.add.image(500, 370, "chair");
     chair2.flipX = true;
-    this.add.sprite(215, 165, "eric").setScale(7/8)
+    this.add.sprite(215, 165, "eric").setScale(3/4)
     let sam = this.add.sprite(385, 165, "sam").setScale(3/4)
     sam.flipX = true
 

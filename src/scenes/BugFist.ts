@@ -38,7 +38,6 @@ constructor() {
         this.fist?.setVelocity(0, 600);
     }
     else if (this.fist?.y && this.fist.y > 42){
-        console.log(this.fist?.y)
         this.fist?.setVelocity(0, -600);
     }else if (this.fist?.body.velocity.x == 0){
         this.fist?.setVelocity(400, 0);

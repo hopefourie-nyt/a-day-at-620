@@ -43,7 +43,6 @@ export default class Intro extends Phaser.Scene {
     this.physics.world.enableBody(door);
     door.body = <Phaser.Physics.Arcade.Body>door.body;
     door.body.setImmovable(true);
-    console.log(this.data.list);
     this.player = new Character(
       this,
       x,

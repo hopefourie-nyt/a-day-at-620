@@ -11,7 +11,6 @@ bugs: number;
 squash_power: number;
 word_slam: Phaser.GameObjects.Text | undefined;
 word: number;
-playerImageKey: any;
 constructor() {
     super("Laptop");
     this.charge = 0;
@@ -160,7 +159,6 @@ init(data: any) {
     });
   }
   update(): void {
-    console.log(this.word);
     if (this.space.isDown){
       this.punching = false;
       this.squash_power = 1 + Math.floor(this.charge/60)
@@ -183,7 +181,6 @@ init(data: any) {
       this.fist?.setScale(1,1)
       this.fist?.setPosition(this.fist.x, -150);      
     }
-    console.log(this.bugs);
     if (this.bugs < 1){
       this.fist?.destroy();
       this.scene.launch("SnackNotification", {playerImageKey: this.playerImageKey});
