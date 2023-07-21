@@ -142,21 +142,6 @@ init(data: any) {
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
 
-
-    // Resume Scene Button
-    const ResumeButton = this.add.text(100, 400, "Resume Scene", {color: '#FFFFFF'});
-    ResumeButton.setInteractive();
-    ResumeButton.on("pointerdown", () => {
-      this.scene.resume("StandUp");
-      this.scene.stop();
-    });
-
-    // Next Scene Button
-    const NextButton = this.add.text(500, 400, "Next Scene", {color: '#FFFFFF'});
-    NextButton.setInteractive();
-    NextButton.on("pointerdown", () => {
-      this.scene.start("Snacks", {playerImageKey: this.playerImageKey});
-    });
   }
   update(): void {
     if (this.space.isDown){
