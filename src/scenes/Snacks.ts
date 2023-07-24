@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import { animateText } from "./helpers";
 import { Snacker } from "../classes/snacker";
 
 export default class Snacks extends Phaser.Scene {
@@ -15,8 +14,6 @@ export default class Snacks extends Phaser.Scene {
     this.playerImageKey = data.playerImageKey;
   }
   create() {
-    const x = 550;
-    const y = 430;
 
     // Background
     this.physics.world.setBounds(0, 0, 5000, 5000);

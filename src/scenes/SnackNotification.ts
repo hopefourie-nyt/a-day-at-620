@@ -15,12 +15,6 @@ export default class Intro extends Phaser.Scene {
 
   }
   create() {
-    const x = 550;
-    const y = 430;
-
-    const width = this.scale.width;
-    const height = this.scale.height;
-    const totalWidth = width * 50;
 
     this.add.image(350, 250, "laptop");
 

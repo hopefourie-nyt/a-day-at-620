@@ -17,7 +17,6 @@ export default class Subway extends Phaser.Scene {
   create() {
 
     const width = this.scale.width;
-    const height = this.scale.height;
     const totalWidth = width * 50;
 
     // Background

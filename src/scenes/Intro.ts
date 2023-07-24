@@ -18,9 +18,6 @@ export default class Intro extends Phaser.Scene {
     const x = 550;
     const y = 430;
 
-    const width = this.scale.width;
-    const height = this.scale.height;
-    const totalWidth = width * 50;
 
     // Background
     this.add.image(350, 100, "nytb").setScale(1 / 2);

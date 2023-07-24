@@ -8,8 +8,6 @@ constructor() {
   }
 
   create() {
-    const x = 300;
-    const y = 0;
 
     //background
     this.add.image(350, 250, "panel");

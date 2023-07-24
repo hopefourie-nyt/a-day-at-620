@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import { animateText } from "./helpers";
 
 export default class LongDay extends Phaser.Scene {
     playerImageKey: any;

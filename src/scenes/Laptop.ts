@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import { animateText } from "./helpers";
-const phrases = ["SQUASHED!!", "SPLATTED!!", "DESTROYED!!", "Kiiiiiiilled", "Die tree killer!!", "EAT FIST", "GET MUSHED"]
+// const phrases = ["SQUASHED!!", "SPLATTED!!", "DESTROYED!!", "Kiiiiiiilled", "Die tree killer!!", "EAT FIST", "GET MUSHED"]
 export default class Laptop extends Phaser.Scene {
 fist: Phaser.Types.Physics.Arcade.ImageWithDynamicBody | undefined
 charge: number;
@@ -24,8 +24,6 @@ init(data: any) {
 
 }
   create() {
-    const x = 300;
-    const y = 0;
 
     //background
     this.add.image(350, 250, "laptop");
